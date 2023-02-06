@@ -1,7 +1,13 @@
+import SongRow from "../SongRow/SongRow";
 
-const MusicTable = (props) => {
-    return ( 
-        <table>
+const MusicTable = ({ songs }) => {
+  const table = songs.map(song => {
+    return  <SongRow song={song} />
+  });
+  return (
+    <section>
+      <h1>Joe's Music Library</h1>
+      <table>
         <thead>
           <tr>
             <th>Title</th>
@@ -11,22 +17,11 @@ const MusicTable = (props) => {
             <th>Genre</th>
           </tr>
         </thead>
-        <tbody>
-          {props.parentSongs.map((song, index) => {
-            return (
-              <tr>
-                <td>{index + 1}</td>
-                <td>{song.title}</td>
-                <td>{song.artist}</td>
-                <td>{song.album}</td>
-                <td>{song.release_date}</td>
-                <td>{song.genre}</td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <tbody>{table}</tbody>
       </table>
-     );
-}
- 
+    </section>
+  );
+};
+
 export default MusicTable;
+
