@@ -1,34 +1,42 @@
 import React, { useState } from 'react';
+import './SearchBar.css'
 
+const SearchBar = ({songs, setSongs}) => {
+    const [category, setCategory] = useState('')
 
-const SearchBar = ({ songs, setSongs }) => {
-
-
-    const [title, setTitle] = useState('');
-    const [artist, setArtist] = useState('');
-    const [album, setAlbum] = useState('');
-    const [releaseDate, setReleaseDate] = useState('');
-    const [genre, setGenre] = useState('');
-
-    function filterSongs(filteredThruSongs) {
-        let songsFiltered = songs.filter((song) => song.filter === filteredThruSongs);
-        setSongs(songsFiltered)
+    const musicFilter = (category) => {
+        setCategory(category)
     }
 
-
+    function filterMusicTable(filterSongs){
+        const musicFiltered = songs.filter((song) => song[category] === filterSongs);
+        setSongs(musicFiltered)
+    }
     return ( 
-        <div onSubmit={filterSongs}>
+        <div onSubmit={filterMusicTable} id='bar'>
             <label>Category:</label>
-            <select>
-            <option value={''} >All</option>
-            <option value={title} onChange={(event) => setTitle(event.target.value)} >Title</option>
-            <option value={artist} onChange={(event) => setArtist(event.target.value)} >Artist</option>
-            <option value={album} onChange={(event) => setAlbum(event.target.value)}>Album</option>
-            <option value={releaseDate} onChange={(event) => setReleaseDate(event.target.value)}>Release Date</option>
-            <option value={genre} onChange={(event) => setGenre(event.target.value)}>Genre</option>
+            <select  onChange={(event) => musicFilter(event.target.value)}
+            value={category}>
+                <option value={''}>All</option>
+                <option value={'title'}>Title</option>
+                <option value={'artist'}>Artist</option>
+                <option value={'album'}>Album</option>
+                <option value={'release_date'}>Release Date</option>
+                <option value={'genre'}>Genre</option>
+            </select>
+            <select onChange={(event) => filterMusicTable(event.target.value)}>
+            {songs.map((song) => {
+                return (
+                    <option>{song[category]}</option>
+                );
+            })}
             </select>
         </div>
      );
 }
  
 export default SearchBar;
+
+
+
+

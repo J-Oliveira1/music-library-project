@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AddNewSong.css'
 
 
 
@@ -31,7 +32,7 @@ const AddNewSong = ({ addingNewSong }) => {
 
 
     return ( 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id='list' >
             <label>Title:</label>
             <input type='text' value={title} onChange={(event) => setTitle(event.target.value)} />
             <label>Artist:</label>

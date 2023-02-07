@@ -27,7 +27,7 @@ function App() {
   return (
     <div>
       <MusicTable songs={songs} />
-      <SearchBar songs={songs}/>
+      <SearchBar songs={songs} setSongs={setSongs}/>
       <AddNewSong addingNewSong={addingNewSong}/>
     </div>
   );

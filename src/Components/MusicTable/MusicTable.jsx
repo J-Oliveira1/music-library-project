@@ -5,10 +5,10 @@ const MusicTable = ({ songs }) => {
     return  <SongRow song={song} />
   });
   return (
-    <section>
+    <section className="container">
       <h1>Joe's Music Library</h1>
-      <table>
-        <thead>
+      <table className="table table-bordered">
+        <thead className="thead-dark">
           <tr>
             <th>Title</th>
             <th>Artist</th>
